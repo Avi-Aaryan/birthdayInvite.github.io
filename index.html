@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Invitation Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+
+    #invitation-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    select {
+      margin-top: 10px;
+    }
+
+    #image-preview {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="invitation-container">
+    <h2>Birthday Invitation Generator</h2>
+
+    <label for="dob">Day of celebration:</label>
+    <input type="date" id="dob" required>
+
+    <label for="venue">Venue:</label>
+    <input type="text" id="venue" placeholder="Enter venue" required>
+
+    <label for="image">Select Background Image:</label>
+    <select id="image">
+      
+      <option value=".images/1.jpg">Image</option>
+      <option value="images/2.png">Image : Green Forest</option>
+      <option value="images/4.png">Image : Path in forest</option>
+      <option value="images/5.png">Image : Flower Valley</option>
+      <option value="images/3.png">Image : City Scape</option>
+    </select>
+
+    <div id="image-preview"></div>
+
+    <button onclick="generateInvitation()">Generate Invitation</button>
+    
+  </div>
+
+  <script>
+    
+
+    
+    function generateInvitation() {
+      var dob = document.getElementById('dob').value;
+      var venue = document.getElementById('venue').value;
+      var selectedImage = document.getElementById('image').value;
+
+   
+      var invitationHTML = `
+        <h2>Birthday Invitation</h2>
+        <div style="background-image: url('${selectedImage}'); background-size: cover; background-position: center; height: 300px;">
+          <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; box-sizing: border-box;">
+            <p>Date of Birth: ${dob}</p>
+            <p>Venue: ${venue}</p>
+          </div>
+        </div>
+      `;
+
+  
+      document.getElementById('invitation-container').innerHTML = invitationHTML;
+    }
+    
+    function generateInvitation() {
+      var dob = document.getElementById('dob').value;
+      var venue = document.getElementById('venue').value;
+      var selectedImage = document.getElementById('image').value;
+
+      var invitationHTML = `
+        <h2>Birthday Invitation</h2>
+        <div style="background-image: url('${selectedImage}'); background-size: cover; background-position: center; height: 300px;">
+          <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; box-sizing: border-box;">
+            <p>Day of celebration: ${dob}</p>
+            <p>Venue: ${venue}</p>
+          </div>
+        </div>
+        
+        <!-- Instagram share button -->
+        <button onclick="shareOnInstagram('${dob}', '${venue}', '${selectedImage}')">Share on Instagram</button>
+      `;
+      document.getElementById('invitation-container').innerHTML = invitationHTML;
+    }
+
+    
+    function shareOnInstagram(dob, venue, selectedImage) {
+
+      var caption = `Join us to celebrate my birthday! 🎉 Date: ${dob}, Venue: ${venue} #BirthdayParty #Celebration`;
+
+    
+      var instagramUrl = `https://www.instagram.com/create/story/?title=${encodeURIComponent(caption)}&url=${encodeURIComponent(selectedImage)}`;
+      window.open(instagramUrl, '_blank');
+    }
+  </script>
+  
+</body>
+</html>
